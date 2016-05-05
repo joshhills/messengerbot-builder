@@ -50,8 +50,18 @@
         "https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js">
         </script>
         
+        <!-- No way am I making a new file for one style rule! -->
+        <style>
+            .input-required::before {
+                content: "* ";
+                font-style: oblique;
+                color: orangered;
+            }
+        </style>
+        
     </head>
     <body>
+        
         <!-- Outer container for spacing -->
         <div class="container p-t-3 p-b-3">
             
@@ -71,7 +81,7 @@
                 <p class="lead">Check out the examples below, and use the dialogues to help build your own Facebook
                 Messenger chat bot!</p>
                 <hr class="m-y-2">
-                <p>Hacked together by <a href="http://www.jumbledjargon.website/" target="_blank">Josh Hills</a> as part of a coding challenge; API and themeing credit to <a href="http://bfy.tw/45P" target="_blank">Facebook Inc</a>. All underlying code is free to be fiddled with, and proper technical attributions have been made in the source. Fork me on <a href="http://www.github.com/">Github</a>, where you can see the changelog and proposed updates, or <a href="http://www.jumbledjargon.com/entry/facebook-messenger-bot-builder" target="_blank">read the blog post here</a>!</p>
+                <p>Hacked together by <a href="http://www.jumbledjargon.website/" target="_blank">Josh Hills</a> as part of a coding challenge; API and themeing credit to <a href="http://bfy.tw/45P" target="_blank">Facebook Inc</a>. All underlying code is free to be fiddled with, and proper technical attributions have been made in the source. Fork me on <a href="https://github.com/JoshHills/messengerbot-builder">Github</a>, where you can see the changelog and proposed updates, or <a href="http://www.jumbledjargon.com/entry/facebook-messenger-bot-builder" target="_blank">read the blog post here</a>!</p>
             </div>
             
             <!-- Examples -->
@@ -175,7 +185,7 @@
                             <code>{first_name}</code> - gets the sender's first name
                         </li>
                         <li>
-                            <code>{first_name}</code> - gets the sender's last name
+                            <code>{last_name}</code> - gets the sender's last name
                         </li>
                         <li>
                             <code>{postback}</code> - gets the postback id (if within postback trigger) <span class="label label-primary">New</span>
@@ -309,22 +319,22 @@
                     
                     <form>
                         
-                        <div class="form-group">
+                        <div class="form-group input-required">
                             <!-- Private Facebook page access token (and hint to show what it looks like) -->
                             <label for="config-access">Page Access Token:</label>
                             <input class=
-                            "form-control input-required" id="config-access" placeholder=
+                            "form-control" id="config-access" placeholder=
                             "EAylxHE3orcd7vrH3EXpaeuoNrPtJ5DcjG6Hb4PuZCoZAonnKXRt3pw0rvei" type="text">
                         </div>
                         
-                        <div class="form-group">
+                        <div class="form-group input-required">
                             <!-- Private user-determined verification phrase -->
                             <label for="config-phrase">Verify Phrase:</label>
                             <input class=
                             "form-control" id="config-phrase" placeholder="my-secret-code" type="text">
                         </div>
                         
-                        <div class="form-group">
+                        <div class="form-group input-required">
                             <!-- Port to listen on -->
                             <label for="config-phrase">Port</label>
                             <input class=
@@ -386,7 +396,7 @@
                         <!-- Page ID -->
                         <div class="tab-pane fade in active" id="welcome-text" role="tabpanel">
                             <form>
-                                <div class="form-group">
+                                <div class="form-group input-required">
                                     <input class="form-control" id="welcome-pageid" placeholder=
                                     "Page ID (found in Facebook page pettings)" type="text">
                                 </div>
@@ -507,17 +517,7 @@
                                     </div>
                                 </div>
                                 
-                                <!-- Image of the bubble -->
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><input aria-label=
-                                        "Checkbox for following text input." type="checkbox"></span>
-                                        <input aria-label="Text input with checkbox." class="form-control"
-                                        placeholder="Image URL" type="text">
-                                    </div>
-                                </div>
-                                
-                                <!-- Repetition of the button -->
+                                <!-- Repetition of the button
                                 <div class="form-group">
                                     <div class="input-group">
                                         <span class="input-group-addon"><input aria-label=
@@ -526,7 +526,7 @@
                                         <input aria-label="Text input with checkbox." class="form-control"
                                         placeholder="0" type="number" min="0">
                                     </div>
-                                </div>
+                                </div>-->
                                 
                             </form>
                             
