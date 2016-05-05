@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html>
+    <!-- Important meta information -->
+    <head>
+        <!-- SEO -->
+        
+        <title>Messenger Bot</title>
+        
+        <meta property="og:title" content="Messenger Bot">
+        <meta property="og:site_name" content="Jumbled Jargon">
+        <meta property="og:url" content="http://www.jumbledjargon.website/messengerbot/">
+        <meta property="og:description" content="Create your own Facebook Messenger chat-bot service with a fully customisable generator. The possibilities are endless!">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="http://www.jumbledjargon.website/messengerbot/img/share-img.jpg" />
+        
+        <link rel="apple-touch-icon" sizes="57x57" href="img/favicons/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="img/favicons/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="img/favicons/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="img/favicons/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="img/favicons/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="img/favicons/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="img/favicons/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="img/favicons/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="img/favicons/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="img/favicons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="img/favicons/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="img/favicons/favicon-16x16.png">
+        <link rel="manifest" href="img/favicons/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="img/favicons/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+        
+        <!-- Stylesheets -->
+        
+        <!-- Precompiled Boostrap V4 -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <!-- Toggles plugin -->
+        <link href=
+        "https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"
+        rel="stylesheet">
+        
+        <!-- Scripts -->
+        
+        <script src="js/jquery-1.11.3.min.js">
+        </script>
+        <script src="js/bootstrap.min.js">
+        </script>
+        <script src=
+        "https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js">
+        </script>
+        
+    </head>
+    <body>
+        <!-- Outer container for spacing -->
+        <div class="container p-t-3 p-b-3">
+            
+            <!-- Logo: It's eye-catching! -->
+            <img alt="messenger bot logo" class="img-fluid m-b-2" src="img/main-logo.png">
+            
+            <!-- Navigation for ease of use -->
+            <div class="btn-group" role="group" aria-label="Basic example" style="width: 100%;">
+                <button type="button" class="btn btn-secondary" style="width: 33.333333%;"><a href="#examples">Examples</a></button>
+                <button type="button" class="btn btn-secondary" style="width: 33.333333%;"><a href="#tutorial">Tutorial</a></button>
+                <button type="button" class="btn btn-secondary" style="width: 33.333333%;"><a href="#chatbot-name">Construct</a></button>
+            </div>
+            
+            <!-- Introductory patter -->
+            <div class="jumbotron m-t-2">
+                <h1 id="jumbotron-lead" class="display-4">Welcome to my chat-bot builder!</h1>
+                <p class="lead">Check out the examples below, and use the dialogues to help build your own Facebook
+                Messenger chat bot!</p>
+                <hr class="m-y-2">
+                <p>Hacked together by <a href="http://www.jumbledjargon.website/" target="_blank">Josh Hills</a> as part of a coding challenge; API and themeing credit to <a href="http://bfy.tw/45P" target="_blank">Facebook Inc</a>. All underlying code is free to be fiddled with, and proper technical attributions have been made in the source. Fork me on <a href="http://www.github.com/">Github</a>, where you can see the changelog and proposed updates, or <a href="http://www.jumbledjargon.com/entry/facebook-messenger-bot-builder" target="_blank">read the blog post here</a>!</p>
+            </div>
+            
+            <!-- Examples -->
+            <div class="card-deck-wrapper" id="examples">
+                <div class="card-deck">
+                    <!-- Example One -->
+                    <div class="card card-inverse card-primary text-xs-center">
+                        <div class="card-block">
+                            <blockquote class="card-blockquote">
+                                <p>A simple echo bot to repeat whatever you say.</p>
+                            </blockquote>
+                        </div>
+                        <div class="card-footer">
+                            <footer><a href="#" target="_blank">Interact With</a> -:*:- <a href="#" target="_blank">View Source</a></footer>
+                        </div>
+                    </div>
+                    <!-- Example Two -->
+                    <div class="card card-inverse card-primary text-xs-center">
+                        <div class="card-block">
+                            <blockquote class="card-blockquote">
+                                <p>A joke-telling bot to keep you laughing (or cringing).</p>
+                            </blockquote>
+                        </div>
+                        <div class="card-footer">
+                            <footer><a href="#" target="_blank">Interact With</a> -:*:- <a href="#" target="_blank">View Source</a></footer>
+                        </div>
+                    </div>
+                    <!-- Example Three -->
+                    <div class="card card-inverse card-primary text-xs-center">
+                        <div class="card-block">
+                            <blockquote class="card-blockquote">
+                                <p>A text-based adventure bot that mimics old branching story-based games.</p>
+                            </blockquote>
+                        </div>
+                        <div class="card-footer">
+                            <footer><a href="#" target="_blank">Interact With</a> -:*:- <a href="#" target="_blank">View Source</a></footer>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Introductory explanation -->
+            <div id="tutorial" class="card m-b-2 m-t-3">
+                <div class="card-header">
+                    Prerequisites
+                </div>
+                <div class="card-block">
+                    <!-- Information about technicalities of set-up -->
+                    <h4 class="card-text">Installation</h4>
+                    <p class="card-text">This generator produces a Javascript file as a NodeJS
+                    webhook that must be securely hosted and accessed by the Messenger API.
+                    Follow <a href="#">the set-up guide</a>, and we'll do the bulk of the
+                    work.</p>
+                    <!-- Sources -->
+                    <p class="card-text">Here are some libraries I depend on:</p>
+                    <ul>
+                        <li>
+                            <a href="#">Express</a> - <code>npm install express</code>
+                        </li>
+                        <li>
+                            <a href="#">Messengerbot</a> - <code>npm install messenger-bot</code>
+                        </li>
+                    </ul>
+                    <!-- Useful resources -->
+                    <p class="card-text">If you're a bit lost, here are some useful resources:</p>
+                    <ul>
+                        <li>
+                            <a href="https://www.npmjs.com/package/npm2" target="_blank">Node Package Manager</a>
+                        </li>
+                        <li>
+                            <a href="https://letsencrypt.org/" target="_blank">Let's Encrypt</a>
+                        </li>
+                        <li>
+                            <a href="https://www.nginx.com/resources/wiki/" target="_blank">NGINX</a>
+                        </li>
+                    </ul>
+                    <hr />
+                    <!-- Information about semantics of generator -->
+                    <h4 class="card-text">Using the generator</h4>
+                    <p class="card-text">Building upon the messenger API, this generator
+                    provides an easy interface to build message elements in response to user
+                    triggers. Different kinds of triggers have been provided, along with
+                    multiple different templates for response - I support generic and button
+                    bubble templates; each may be duplicitous, and all fields abide by the
+                    standards set forth in the <a href="https://developers.facebook.com/docs/messenger-platform/implementation" 
+                    target="_blank">Messenger documentation</a>.</p>
+                    <p class="card-text">To provide <strong>dynamic functionality</strong> without
+                    having to delve into the generated code, I provided pre-code boxes
+                    in case you need to access external APIs. Code written in these boxes will
+                    be added as-is. Furthermore, if you want to reference any variables or
+                    dynamically set the textual content of other elements, anything wrapped in
+                    <code>{ }</code> will be parsed as functional code. There are alrady some
+                    variables provided, and more may be accessed if you understand the messenger-bot
+                    library...</p>
+                    <!-- Sources -->
+                    <ul>
+                        <li>
+                            <code>{text}</code> - gets the sender's message contents
+                        </li>
+                        <li>
+                            <code>{first_name}</code> - gets the sender's first name
+                        </li>
+                        <li>
+                            <code>{first_name}</code> - gets the sender's last name
+                        </li>
+                    </ul>
+                    <p class="card-text text-danger">Required fields are denoted with asterisks, but
+                    no checking is provided - you may want to be able to generate the file without
+                    them; be warned however that this may break things!</p>
+                    <hr />
+                    <p>Feel free to <a href="http://www.jumbledjargon.website/about" target="_blank">contact me</a> me if you'd like to leave some feedback or suggest some changes.</p>
+                </div>
+            </div>
+            
+            <hr class="m-t-2 m-b-2" />
+            
+            <!-- Allow the user to name their chatbot -->
+            <input class="form-control form-control-lg text-primary m-b-2" id="chatbot-name" type="text" placeholder="Name your chatbot">
+            
+            <!-- Section-based modals provide extra insight into their necessity -->
+            <!-- Configuration modal -->
+            <div aria-hidden="true" aria-labelledby="configmessagemodal" class=
+            "modal fade" id="config-info" role="dialog" tabindex="-1">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button aria-label="Close" class="close" data-dismiss="modal" type=
+                            "button"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">What does this mean?</h4>
+                        </div>
+                        <div class="modal-body">These are some things your Messenger needs your
+                        webhook to include for verification. They can be found in your Facebook
+                        developers admin panel. <img alt="config message example" class=
+                        "img-fluid m-t-1 m-r-1 m-l-1 m-b-1" src=""></div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" data-dismiss="modal" type=
+                            "button">Close</button> <a href="#"><button class="btn btn-primary" type=
+                            "button">Where?</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Welcome Message modal -->
+            <div aria-hidden="true" aria-labelledby="welcomemessagemodal" class=
+            "modal fade" id="welcome-info" role="dialog" tabindex="-1">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button aria-label="Close" class="close" data-dismiss="modal" type=
+                            "button"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">What does this mean?</h4>
+                        </div>
+                        <div class="modal-body">Adding a welcome message displays something to the
+                        user from your chatbot's page <em>before</em> they've sent their first
+                        message. It's a good opportunity to introduce somebody to the
+                        functionality your chatbot provides, and the set the tone of discussion.
+                        <img alt="welcome message example" class=
+                        "img-fluid m-t-1 m-r-1 m-l-1 m-b-1" src=""></div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" data-dismiss="modal" type=
+                            "button">Close</button> <a href="#"><button class="btn btn-primary" type=
+                            "button">View Documentation</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Error message modal -->
+            <div aria-hidden="true" aria-labelledby="errormessagemodal" class=
+            "modal fade" id="error-info" role="dialog" tabindex="-1">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button aria-label="Close" class="close" data-dismiss="modal" type=
+                            "button"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">What does this mean?</h4>
+                        </div>
+                        <div class="modal-body">You can provide your bot with a fall-back response
+                        for when the user does not trigger a command. It'll help make your bot
+                        easier to use, and prevent it from seeming unresponsive or broken.
+                        <img alt="error message example" class="img-fluid m-t-1 m-r-1 m-l-1 m-b-1"
+                        src=""></div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" data-dismiss="modal" type=
+                            "button">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Compile modal -->
+            <div aria-hidden="true" aria-labelledby="compilemodal" class=
+            "modal fade" id="compile-info" role="dialog" tabindex="-1">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button aria-label="Close" class="close" data-dismiss="modal" type=
+                            "button"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Generating...</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Your download should start soon. The file should be ready for
+                            hosting, <em>however</em> you may want to give it a once-over or use
+                            it as a starting basis for something bigger!</p>
+                            <div id="welcome-string">
+                                <p><strong>Paste this into your terminal and fire it off to set
+                                    your welcome message:</strong></p>
+                                <pre class="bg-inverse" id="welcome-post-request"></pre>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" data-dismiss="modal" type=
+                            "button">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Begin static sections -->
+            <!-- Configuration Section -->
+            <nav class="navbar navbar-light bg-faded">
+                <!-- Provide collapsibility -->
+                <button class="navbar-toggler" data-target="#config-collapse" data-toggle=
+                "collapse" type="button">&#9776;</button>
+                Configuration
+                <!-- Provide extra information -->
+                <button class=
+                "btn btn-secondary pull-xs-right" data-target="#config-info" data-toggle=
+                "modal" type="button">?</button>
+            </nav>
+            <div class="collapse in" id="config-collapse">
+                <div class="p-a-1">
+                    
+                    <form>
+                        
+                        <div class="form-group">
+                            <!-- Private Facebook page access token (and hint to show what it looks like) -->
+                            <label for="config-access">Page Access Token:</label>
+                            <input class=
+                            "form-control" id="config-access" placeholder=
+                            "EAylxHE3orcd7vrH3EXpaeuoNrPtJ5DcjG6Hb4PuZCoZAonnKXRt3pw0rvei" type="text">
+                        </div>
+                        
+                        <div class="form-group">
+                            <!-- Private user-determined verification phrase -->
+                            <label for="config-phrase">Verify Phrase:</label>
+                            <input class=
+                            "form-control" id="config-phrase" placeholder="my-secret-code" type="text">
+                        </div>
+                        
+                        <div class="form-group">
+                            <!-- Port to listen on -->
+                            <label for="config-phrase">Port</label>
+                            <input class=
+                            "form-control" id="config-port" placeholder="3000" type="number" value="3000" min="0">
+                        </div>
+                        
+                    </form>
+                    
+                    <!-- Allow user to provide global variables or functions. -->
+                    <label for="welcome-precode">Globals:</label>
+                    <div class="checkbox-inline pull-xs-right">
+                        <label><input type="checkbox">Include</label>
+                    </div>
+                    <textarea class="form-control m-b-1" id="config-globals" rows="4" placeholder="Here you can set up functions or inclusions to the head of the file, at global scope."></textarea>
+                    
+                </div>
+            </div>
+            <br />
+            
+            <!-- Welcome Message Section -->
+            <nav class="navbar navbar-light bg-faded">
+                <!-- Provide collapsibility -->
+                <button class="navbar-toggler" data-target="#welcome-collapse" data-toggle=
+                "collapse" type="button">&#9776;</button>
+                Welcome Message
+                <!-- Provide extra information -->
+                <button class=
+                "btn btn-secondary pull-xs-right m-l-1" data-target="#welcome-info"
+                data-toggle="modal" type="button">?</button>
+                <!-- Provide toggleability -->
+                <div class="pull-xs-right">
+                    <input checked data-off="Exclude" data-on="Include" data-toggle="toggle"
+                    type="checkbox" id="welcome-toggle">
+                </div>
+                <!-- Enable toggle situationally -->
+                <script>
+                    $(function() {
+                      $('#welcome').bootstrapToggle();
+                    })
+                </script>
+            </nav>
+            <div class="collapse" id="welcome-collapse">
+                <div class="p-a-1">
+                    
+                    <!-- Allow user to choose the kind of content they want to send -->
+                    <ul class="nav nav-tabs m-b-1" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link plain-text active" data-toggle="tab" href="#welcome-text" role=
+                            "tab">Plain Text</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link structured-content disabled">Structured Content</a>
+                        </li>
+                    </ul>
+                    
+                    <!-- Types of content building -->
+                    <div class="tab-content">
+                        
+                        <!-- Page ID -->
+                        <div class="tab-pane fade in active" id="welcome-text" role="tabpanel">
+                            <form>
+                                <div class="form-group">
+                                    <input class="form-control" id="welcome-pageid" placeholder=
+                                    "Page ID (found in Facebook page pettings)" type="text">
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <!-- Plain text message -->
+                        <div class="tab-pane fade in active" id="welcome-text" role="tabpanel">
+                            <form>
+                                <div class="form-group">
+                                    <input class="form-control" id="welcome-plaintext" placeholder=
+                                    "Introduce your bot!" type="text">
+                                </div>
+                            </form>
+                        </div>
+                            
+                    </div>
+                </div>
+            </div>
+            <br />
+            
+            <!-- Error/Default Message Section -->
+            <nav class="navbar navbar-light bg-faded">
+                <!-- Provide collapsibility -->
+                <button class="navbar-toggler" data-target="#error-collapse" data-toggle=
+                "collapse" type="button">&#9776;</button>
+                Error/Default Message
+                <!-- Provide extra information -->
+                <button class="btn btn-secondary pull-xs-right m-l-1" data-target=
+                "#error-info" data-toggle="modal" type="button">?</button>
+                <!-- Provide toggleability -->
+                <div class="pull-xs-right">
+                    <input checked data-off="Exclude" data-on="Include" data-toggle="toggle"
+                    type="checkbox" id="error-toggle">
+                </div>
+                <script>
+                    $(function() {
+                      $('#error').bootstrapToggle();
+                    })
+                </script>
+            </nav>
+            <div class="collapse" id="error-collapse">
+                <div id="error-trigger" class="p-a-1">
+                    
+                    <!-- Allow user to provide code to run before the welcome message is set -->
+                    <label for="error-precode">Precode:</label>
+                    <div class="checkbox-inline pull-xs-right">
+                        <label><input type="checkbox">Include</label>
+                    </div>
+                    <textarea class="form-control m-b-1" id="comment" rows="4" placeholder="Here you can set up local variables (potentially using external API calls) to reference using parentheses in scope in the following fields."></textarea>
+                    
+                    <!-- Allow user to choose the kind of content they want to send -->
+                    <ul class="nav nav-tabs m-b-1" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link plain-text active" data-toggle="tab" href="#error-text" role=
+                            "tab">Plain Text</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link structured-content" data-toggle="tab" href="#error-structured" role=
+                            "tab">Structured Content</a>
+                        </li>
+                    </ul>
+                    
+                    <!-- Types of content building -->
+                    <div class="tab-content">
+                        
+                        <!-- Plain text message -->
+                        <div class="tab-pane fade in active" id="error-text" role="tabpanel">
+                            <form>
+                                <div class="form-group">
+                                    <input class="form-control" id="error-plaintext" placeholder=
+                                    "Respond with a plain text message." type="text">
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <!-- Structured message bubble object -->
+                        <div class="tab-pane fade" id="error-structured" role="tabpanel">
+                            <form>
+                                
+                                <!-- Title of the bubble -->
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><input aria-label=
+                                        "Checkbox for following text input." type="checkbox"></span>
+                                        <input aria-label="Text input with checkbox." class="form-control"
+                                        placeholder="Title" type="text">
+                                    </div>
+                                </div>
+                                
+                                <!-- Subtitle of the bubble -->
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><input aria-label=
+                                        "Checkbox for following text input." type="checkbox"></span>
+                                        <input aria-label="Text input with checkbox." class="form-control"
+                                        placeholder="Subtitle" type="text">
+                                    </div>
+                                </div>
+                                
+                                <!-- URL of the bubble -->
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><input aria-label=
+                                        "Checkbox for following text input." type="checkbox"></span>
+                                        <input aria-label="Text input with checkbox." class="form-control"
+                                        placeholder="Item URL" type="text">
+                                    </div>
+                                </div>
+                                
+                                <!-- Image of the bubble -->
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><input aria-label=
+                                        "Checkbox for following text input." type="checkbox"></span>
+                                        <input aria-label="Text input with checkbox." class="form-control"
+                                        placeholder="Image URL" type="text">
+                                    </div>
+                                </div>
+                                
+                            </form>
+                            
+                            <!-- Allow the user to add multiple buttons -->
+                            <div class="btn-group">
+                                <button class="btn btn-secondary" type="button" onclick="addButtonBuildDialog(this)">Add Button</button>
+                                <button aria-expanded="false" aria-haspopup="true" class=
+                                "btn btn-secondary dropdown-toggle" data-toggle="dropdown" type=
+                                "button"><span class="sr-only">Toggle Button Dropdown</span></button>
+                                <div class="dropdown-menu">
+                                    <!-- Add option for URL button -->
+                                    <a class="dropdown-item url-button" onclick="addButtonBuildDialog(this)">URL</a>
+                                    <!-- Add option for postback button -->
+                                    <a class="dropdown-item postback-button" onclick="addButtonBuildDialog(this)">Postback</a>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            
+            <!-- Begin user trigger section -->
+            <!-- A chat trigger created by the user -->
+            <div class="card user-trigger">
+                
+                <div class="card-header card-primary" style="color: white;">
+                    Trigger
+                    <!-- Allow user to delete the trigger -->
+                    <button aria-label="Close" class="close" type=
+                    "button"><span aria-hidden="true" style=
+                    "color: white;" onclick="removeTrigger(this)">&times;</span></button>
+                </div>
+                
+                <!-- Use a list to split the trigger options -->
+                <ul class="list-group list-group-flush">
+                    
+                    <!-- Trigger options -->
+                    <li class="list-group-item">
+                        <div class="card-block">
+                            
+                            <!-- Allow user to describe the trigger -->
+                            <fieldset class="form-group">
+                                <input class="form-control" placeholder="Descriptor"> <small class=
+                                "text-muted">Optionally provide something to identify this particular
+                                trigger event; this will manifest as function naming and
+                                commenting.</small>
+                            </fieldset>
+                            
+                            <!-- Allow the user to choose the type of trigger -->
+                            <h6 class="card-subtitle">Choose the type...</h6><br>
+                            <div class="btn-group btn-block set-trigger-type" data-toggle="buttons">
+                                <label class="btn btn-primary-outline trigger-option-text" style=
+                                "width: 33%;" onclick="switchTriggerType(this)"><input name="trigger-options" type="radio">Text
+                                Contains</label>
+                                <label class="btn btn-primary-outline trigger-option-person" style=
+                                "width: 33%;" onclick="switchTriggerType(this)"><input name="trigger-options" type="radio">Specific
+                                Person</label>
+                                <label class="btn btn-primary-outline trigger-option-postback" style=
+                                "width: 33%;" onclick="switchTriggerType(this)"><input name="trigger-options" type=
+                                "radio">Postback</label>
+                            </div>
+                            
+                            <!-- Empty div populated upon selection of trigger type -->
+                            <div class="trigger-options">
+                            </div>
+                            
+                        </div>
+                    </li>
+                    
+                    <!-- Event options -->
+                    <li class="list-group-item">
+                        <div class="card-block">
+                            
+                            <h6 class="card-subtitle">Add response events...</h6><br>
+                            
+                            <!-- Wrap it in an accordion for ease of access -->
+                            <div id="trigger-accordion-1" role="tablist">
+                                
+                                <!-- Events -->
+                                <div class="panel panel-default">
+                                    
+                                    <!-- Collapsible tab -->
+                                    <div class="panel-heading" role="tab">
+                                        <hr />
+                                        <h6 class="card-subtitle text-muted" style="display: inline-block;">
+                                        <a aria-controls="trigger-event-1" aria-expanded="true" data-parent=
+                                        "#trigger-accordion-1" data-toggle="collapse" href=
+                                        "#trigger-event-1">Event</a></h6>
+                                        <!-- Allow user to remove the event -->
+                                        <button aria-label="Close" class=
+                                        "close pull-xs-right" type="button" onclick="removeEvent(this)"><span aria-hidden=
+                                        "true">&times;</span></button>
+                                        <hr />
+                                    </div>
+                                    
+                                    <!-- Collapsible tab dialogue content. -->
+                                    <div class="panel-collapse collapse" id="trigger-event-1" role=
+                                "tabpanel">
+                                        <!-- Allow user to run code prior to element construction -->
+                                        <label for="trigger-precode">Precode:</label>
+                                        <div class="checkbox-inline pull-xs-right">
+                                            <label><input type="checkbox">Include</label>
+                                        </div>
+                                        <textarea class="form-control m-b-1" id="comment" rows="4" placeholder="Here you can set up local variables (potentially using external API calls) to reference using parentheses in scope in the following fields."></textarea>
+
+                                        <!-- Allow user to select the type of content -->
+                                        <ul class="nav nav-tabs m-b-1" role="tablist">
+
+                                            <!-- Plain text response -->
+                                            <li class="nav-item">
+                                                <a class="nav-link plain-text active" data-toggle="tab" href="#trigger-text-1"
+                                                role="tab">Plain Text</a>
+                                            </li>
+
+                                            <!-- Structured content bubble response -->
+                                            <li class="nav-item">
+                                                <a class="nav-link structured-content" data-toggle="tab" href="#trigger-structured-1"
+                                                role="tab">Structured Content</a>
+                                            </li>
+                                        </ul>
+
+                                        <div class="tab-content">
+
+                                            <!-- Plain text response -->
+                                            <div class="tab-pane fade in active" id="trigger-text-1" role=
+                                            "tabpanel">
+                                                <form>
+                                                    <div class="form-group">
+                                                        <input class="form-control" id="trigger-plaintext" placeholder=
+                                                        "Reply with a plain text message." type="text">
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                            <!-- Structured content bubble response -->
+                                            <div class="tab-pane fade" id="trigger-structured-1" role="tabpanel">
+
+                                                <!-- Section the element for clarity -->
+                                                <div class="card trigger-element">
+                                                    <div class="card-header">
+                                                        Element 
+                                                        <!-- Allow user to remove the element -->
+                                                        <button aria-label="Close" class="close" type=
+                                                        "button" onclick="removeTriggerElement(this)"><span aria-hidden="true">&times;</span></button>
+                                                    </div>
+
+                                                    <div class="structured-bubble card-block">
+
+                                                        <form>
+
+                                                            <!-- Allow user to describe the message element they are building -->
+                                                            <fieldset class="form-group">
+                                                                <input class="form-control" placeholder="Descriptor">
+                                                                <small class="text-muted">Optionally provide something to denote
+                                                                this particular message element, added as a comment.</small>
+                                                            </fieldset>
+
+                                                            <!-- Title of the bubble -->
+                                                            <div class="form-group">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon"><input aria-label=
+                                                                    "Checkbox for following text input." type="checkbox"></span>
+                                                                    <input aria-label="Text input with checkbox." class="form-control"
+                                                                    placeholder="Title" type="text">
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- Subtitle of the bubble -->
+                                                            <div class="form-group">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon"><input aria-label=
+                                                                    "Checkbox for following text input." type="checkbox"></span>
+                                                                    <input aria-label="Text input with checkbox." class="form-control"
+                                                                    placeholder="Subtitle" type="text">
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- URL of the bubble -->
+                                                            <div class="form-group">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon"><input aria-label=
+                                                                    "Checkbox for following text input." type="checkbox"></span>
+                                                                    <input aria-label="Text input with checkbox." class="form-control"
+                                                                    placeholder="Item URL" type="text">
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- Image of the bubble -->
+                                                            <div class="form-group">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon"><input aria-label=
+                                                                    "Checkbox for following text input." type="checkbox"></span>
+                                                                    <input aria-label="Text input with checkbox." class="form-control"
+                                                                    placeholder="Image URL" type="text">
+                                                                </div>
+                                                            </div>
+
+                                                        </form>
+
+                                                        <!-- Allow the user to add multiple buttons -->
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-secondary" type="button" onclick="addButtonBuildDialog(this)">Add Button</button>
+                                                            <button aria-expanded="false" aria-haspopup="true" class=
+                                                            "btn btn-secondary dropdown-toggle" data-toggle="dropdown" type=
+                                                            "button"><span class="sr-only">Toggle Button Dropdown</span></button>
+                                                            <div class="dropdown-menu">
+                                                                <!-- Add option for URL button -->
+                                                                <a class="dropdown-item url-button" onclick="addButtonBuildDialog(this)">URL</a>
+                                                                <!-- Add option for postback button -->
+                                                                <a class="dropdown-item postback-button" onclick="addButtonBuildDialog(this)">Postback</a>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <!-- Allow the user to create a carousel of elements -->
+                                                <button class="btn btn-primary m-b-1" type="button" onclick="addEventElement(this)">Add
+                                                Element</button>
+
+                                            </div>
+
+                                            <hr />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                            <!-- Allow the user to add more events -->
+                            <button class="btn btn-primary m-b-1 m-t-1" type="button" onclick="addEvent(this)">
+                            Add Event</button>
+                            
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <br />
+            
+            <!-- Allow user to add multiple triggers -->
+            <button class="btn btn-primary-outline" type="button" onclick="addTrigger(this)">Add Trigger</button>
+            
+            <!-- Compile all user choices into a file -->
+            <button class="btn btn-primary btn-lg btn-block m-t-2" type="button" onclick="buildFile()">Talk to
+            me</button>
+            
+        </div>
+        
+        <!-- Sneaky script to mess with the jumbotron! -->
+        <script>
+            
+            // Declare some different introductions...
+            var introductions = ["Run your mouth...", "Talk qwerty to me...", "Beep. Boop beep...", "Let somebody else speak on your behalf..."];
+            
+            // Select a random one.
+            $('#jumbotron-lead').text(introductions[Math.floor(Math.random() * introductions.length)]);
+            
+        </script>
+        
+        <!-- Scripts to load after body, allow manipulation of elements and compilation -->
+        <script src="js/dom-manipulation.js"></script>
+        <script src="js/compile.js"></script>
+        
+    </body>
+</html>
