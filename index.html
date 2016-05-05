@@ -177,7 +177,11 @@
                         <li>
                             <code>{first_name}</code> - gets the sender's last name
                         </li>
+                        <li>
+                            <code>{postback}</code> - gets the postback id (if within postback trigger) <span class="label label-primary">New</span>
+                        </li>
                     </ul>
+                    <p class="card-text"><strong>Precedence is determined by the order in which you add triggers!</strong></p>
                     <p class="card-text text-danger">Required fields are denoted with asterisks, but
                     no checking is provided - you may want to be able to generate the file without
                     them; be warned however that this may break things!</p>
@@ -309,7 +313,7 @@
                             <!-- Private Facebook page access token (and hint to show what it looks like) -->
                             <label for="config-access">Page Access Token:</label>
                             <input class=
-                            "form-control" id="config-access" placeholder=
+                            "form-control input-required" id="config-access" placeholder=
                             "EAylxHE3orcd7vrH3EXpaeuoNrPtJ5DcjG6Hb4PuZCoZAonnKXRt3pw0rvei" type="text">
                         </div>
                         
@@ -500,6 +504,27 @@
                                         "Checkbox for following text input." type="checkbox"></span>
                                         <input aria-label="Text input with checkbox." class="form-control"
                                         placeholder="Image URL" type="text">
+                                    </div>
+                                </div>
+                                
+                                <!-- Image of the bubble -->
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><input aria-label=
+                                        "Checkbox for following text input." type="checkbox"></span>
+                                        <input aria-label="Text input with checkbox." class="form-control"
+                                        placeholder="Image URL" type="text">
+                                    </div>
+                                </div>
+                                
+                                <!-- Repetition of the button -->
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><input aria-label=
+                                        "Checkbox for following text input." type="checkbox"></span>
+                                        <span class="input-group-addon">Repeat Times:</span>
+                                        <input aria-label="Text input with checkbox." class="form-control"
+                                        placeholder="0" type="number" min="0">
                                     </div>
                                 </div>
                                 

@@ -8,6 +8,27 @@
 var eventCount = 1;
 
 /*
+ * Disable/Enable an input
+ * based on the value of
+ * a checkbox.
+ * 
+ * @param cb    The checkbox.
+ */
+function toggleInputActive(cb) {
+    
+    // Is the checkbox is on...
+    if($(cb).is(':checked')) {
+        // Disable the previous textbox.
+        $(cb).parent().parent().parent().find('input.form-control').attr('disabled','');
+    }
+    else {
+        // Enable the previous textbox.
+        $(cb).parent().parent().parent().find('input.form-control').removeAttr('disabled');
+    }
+    
+}
+
+/*
  * Add new button building dialogue
  * to the current section.
  * 
@@ -16,10 +37,10 @@ var eventCount = 1;
 function addButtonBuildDialog(element) {
 
     // Store the URL button dialogue HTML string.
-    var addURLButtonHTMLString = '<div class="card add-button"> <div class="card-header card-primary" style="color: white;"> Button <button aria-label="Close" class="close" type="button" onclick="removeButton(this)"><span aria-hidden="true" style="color: white;">&times;</span></button> </div><div class="card-block"> <fieldset class="form-group"> <input class="form-control" placeholder="Descriptor"> <small class="text-muted">Optionally provide something to denote this particular button on the element, added as a comment.</small> </fieldset> <div class="btn-group btn-block" data-toggle="buttons"> <label onclick="switchButtonOptions(this)" class="btn btn-primary-outline active" style="width: 50%;"><input class="url-button" checked name="button-options" type="radio">URL</label> <label onclick="switchButtonOptions(this)" class="btn btn-primary-outline" style="width: 50%;"><input class="postback-button" onclick="switchButtonOptions(this)" name="button-options" type="radio">Postback</label> </div><div class="button-type-controls"> <input type="text" class="form-control m-t-1" placeholder="URL Title"> <input type="text" class="form-control m-t-1" placeholder="URL"> </div></div></div>';
+    var addURLButtonHTMLString = '<div class="card add-button"> <div class="card-header card-primary" style="color: white;"> Button <button aria-label="Close" class="close" type="button" onclick="removeButton(this)"><span aria-hidden="true" style="color: white;">&times;</span></button> </div><div class="card-block"> <fieldset class="form-group"> <input class="form-control" placeholder="Descriptor"> <small class="text-muted">Optionally provide something to denote this particular button on the element, added as a comment.</small> </fieldset> <div class="btn-group btn-block" data-toggle="buttons"> <label onclick="switchButtonOptions(this)" class="btn btn-primary-outline active" style="width: 50%;"><input class="url-button" checked name="button-options" type="radio">URL</label> <label onclick="switchButtonOptions(this)" class="btn btn-primary-outline" style="width: 50%;"><input class="postback-button" onclick="switchButtonOptions(this)" name="button-options" type="radio">Postback</label> </div><div class="button-type-controls"> <input type="text" class="form-control m-t-1" placeholder="URL Title"> <input type="text" class="form-control m-t-1" placeholder="URL"><!-- Repetition of the button --><div class="form-group m-t-1"><div class="input-group"><span class="input-group-addon"><input aria-label="Checkbox for following text input." type="checkbox"></span><span class="input-group-addon">Repeat Times:</span><input aria-label="Text input with checkbox." class="form-control"placeholder="0" type="text"></div></div></div></div></div>';
 
     // Store the postback button dialogue HTML string.
-    var addPostbackButtonHTMLString = '<div class="card add-button"> <div class="card-header card-primary" style="color: white;"> Button <button aria-label="Close" class="close" type="button" onclick="removeButton(this)"><span aria-hidden="true" style="color: white;">&times;</span></button> </div><div class="card-block"> <fieldset class="form-group"> <input class="form-control" placeholder="Descriptor"> <small class="text-muted">Optionally provide something to denote this particular button on the element, added as a comment.</small> </fieldset> <div class="btn-group btn-block" data-toggle="buttons"> <label onclick="switchButtonOptions(this)" class="btn btn-primary-outline" style="width: 50%;"><input class="url-button" name="button-options" type="radio">URL</label> <label onclick="switchButtonOptions(this)" class="btn btn-primary-outline active" style="width: 50%;"><input class="postback-button" onclick="switchButtonOptions(this)" name="button-options" type="radio" checked>Postback</label> </div><div class="button-type-controls"> <input class="form-control m-t-1" placeholder="Title" type="text"> <input class="form-control m-t-1" placeholder="Payload" type="text"> </div></div></div>';
+    var addPostbackButtonHTMLString = '<div class="card add-button"> <div class="card-header card-primary" style="color: white;"> Button <button aria-label="Close" class="close" type="button" onclick="removeButton(this)"><span aria-hidden="true" style="color: white;">&times;</span></button> </div><div class="card-block"> <fieldset class="form-group"> <input class="form-control" placeholder="Descriptor"> <small class="text-muted">Optionally provide something to denote this particular button on the element, added as a comment.</small> </fieldset> <div class="btn-group btn-block" data-toggle="buttons"> <label onclick="switchButtonOptions(this)" class="btn btn-primary-outline" style="width: 50%;"><input class="url-button" name="button-options" type="radio">URL</label> <label onclick="switchButtonOptions(this)" class="btn btn-primary-outline active" style="width: 50%;"><input class="postback-button" onclick="switchButtonOptions(this)" name="button-options" type="radio" checked>Postback</label> </div><div class="button-type-controls"> <input class="form-control m-t-1" placeholder="Title" type="text"> <input class="form-control m-t-1" placeholder="Payload" type="text"> <!-- Repetition of the button --><div class="form-group m-t-1"><div class="input-group"><span class="input-group-addon"><input aria-label="Checkbox for following text input." type="checkbox"></span><span class="input-group-addon">Repeat Times:</span><input aria-label="Text input with checkbox." class="form-control"placeholder="0" type="text"></div></div></div></div></div>';
 
     // If URL button has been specifically selected...
     if($(element).hasClass('url-button')) {
@@ -49,13 +70,13 @@ function switchButtonOptions(element) {
     if($(element).find('input').hasClass('url-button')) {
         // Insert the correct input options.
         $(element).parent().next().html('<input type="text" class="form-control m-t-1" placeholder="URL Title">'
-                            + '<input type="text" class="form-control m-t-1" placeholder="URL">');
+                            + '<input type="text" class="form-control m-t-1" placeholder="URL"><!-- Repetition of the button --><div class="form-group m-t-1"><div class="input-group"><span class="input-group-addon"><input aria-label="Checkbox for following text input." type="checkbox"></span><span class="input-group-addon">Repeat Times:</span><input aria-label="Text input with checkbox." class="form-control"placeholder="0" type="number" min="0"></div></div>');
     }
     // Or a postback button...
     else {
         // Insert the correct input options.
         $(element).parent().next().html('<input class="form-control m-t-1" placeholder="Title" type="text">'
-                            + '<input class="form-control m-t-1" placeholder="Payload" type="text">');
+                            + '<input class="form-control m-t-1" placeholder="Payload" type="text"><!-- Repetition of the button --><div class="form-group m-t-1"><div class="input-group"><span class="input-group-addon"><input aria-label="Checkbox for following text input." type="checkbox"></span><span class="input-group-addon">Repeat Times:</span><input aria-label="Text input with checkbox." class="form-control"placeholder="0" type="number" min="0"></div></div>');
     }
 
 }
@@ -80,7 +101,7 @@ function switchTriggerType(element) {
     // Either the user has selected a text-based trigger...
     if($(element).hasClass('trigger-option-text')) {
         // Insert the correct input options.
-        $(element).parent().next().html('<div class="form-group"> <input class="form-control m-t-1" placeholder="String of text (single space is catch-all)" type="text"> <div class="checkbox"> <label> <input type="checkbox"> Strict </label> </div></div>');
+        $(element).parent().next().html('<div class="form-group"> <input class="form-control m-t-1 m-b-1 form-control-warning" placeholder="String of text." type="text" /> <div class="checkbox-inline"> <label> <input type="checkbox" checked/> Exact match. </label> </div> <div class="checkbox-inline"> <label> <input type="checkbox" onclick="toggleInputActive(this)"/> Catch-all (any text). </label> </div></div>');
     }
     // Or a person-based trigger...
     else if($(element).hasClass('trigger-option-person')) {
@@ -90,7 +111,7 @@ function switchTriggerType(element) {
     // Or a postback-based trigger...
     else {
         // Insert the correct input options.
-        $(element).parent().next().html('<input class="form-control m-t-1" placeholder="Payload Identifier" type="text">');
+        $(element).parent().next().html('<div class="form-group"><input class="form-control m-t-1" placeholder="Payload Identifier" type="text"></div><div class="checkbox-inline"> <label> <input type="checkbox" onclick="toggleInputActive(this)"/> Catch-all (any postback). </label> </div>');
     }
 
 }

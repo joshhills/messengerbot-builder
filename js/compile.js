@@ -76,8 +76,6 @@ function displayAlert() {
         // Add the string to the modal.
         $('#welcome-post-request').text(curlString);
         
-        console.log('got to this bit!');
-        
         // Show the CURL string.
         $('div#welcome-string').css('visibility','initial');
         
@@ -173,7 +171,7 @@ function getEventHandlers() {
     /* Postback triggers. */
 
     // This is necessary for the postback handler.
-    var onPostbackOpeningJS = "\/*\r\n * Register listening for postbacks.\r\n *\/\r\nbot.on(\'postback\', (payload, reply) => {\r\n\r\n\t\/* Retrieve user profile information. *\/\r\n\r\n\tbot.getProfile(payload.sender.id, (err, profile) => {\r\n\r\n\t\t\/\/ If an error was encountered, break.\r\n\t\tif (err) throw err;\r\n\r\n\t\t\/\/ Otherwise, set values returned from siphoning.\r\n\t\tvar first_name = profile.first_name;\r\n\t\tvar last_name = profile.last_name;\r\n        \r\n        \/\/ Construct response to user.\r\n        var response = {};\r\n        \r\n        \/* Build response. *\/\r\n        \r\n        var elements = [];\r\n        var buttons;\r\n\r\n        \/* Else-if tree structure checks for each trigger. *\/\r\n\n";
+    var onPostbackOpeningJS = "\/*\r\n * Register listening for postbacks.\r\n *\/\r\nbot.on(\'postback\', (payload, reply) => {\r\n\r\n\t\/* Retrieve user profile information. *\/\r\n\r\n\tbot.getProfile(payload.sender.id, (err, profile) => {\r\n\r\n\t\t\/\/ If an error was encountered, break.\r\n\t\tif (err) throw err;\r\n\r\n\t\t\/\/ Otherwise, set values returned from siphoning.\r\n\t\tvar first_name = profile.first_name;\r\n\t\tvar last_name = profile.last_name;\r\n\n        // Store user payload.\n        var postback = payload.postback.payload;        \r\n\n        \/\/ Construct response to user.\r\n        var response = {};\r\n        \r\n        \/* Build response. *\/\r\n        \r\n        var elements = [];\r\n        var buttons;\r\n\r\n        \/* Else-if tree structure checks for each trigger. *\/\r\n\n";
 
     // This is user defined based on postback triggers.
     var onPostbackMiddleJS = "";
@@ -218,6 +216,17 @@ function getEventHandlers() {
                 // Add description.
                 onMessageMiddleJS += "\t/* " + userDesc + " */";  
             }
+            
+            // Retrieve whether the text is a catch-all.
+            var isCatchAll = $($(triggerParent).find('input:checkbox')[1]).is(':checked');
+            
+            if(isCatchAll) {
+                
+                onMessageMiddleJS += "\n\t\t"
+                    + "if(true) {\n\n";
+                
+            }
+            else {
 
             // Retrieve whether text inclusion is strict.
             var isStrict = $(triggerParent).find('input:checkbox').first().is(':checked');
@@ -233,6 +242,8 @@ function getEventHandlers() {
                 + "\"), "
                 + isStrict
                 + ")) {\n\n";
+                
+            }
 
         }
         // If the trigger is a user-based one...
@@ -279,16 +290,29 @@ function getEventHandlers() {
                 // Add description.
                 onPostbackMiddleJS += "\t/* " + userDesc + " */";  
             }
+            
+            // Retrieve whether the text is a catch-all.
+            var isCatchAll = $($(triggerParent).find('input:checkbox')[0]).is(':checked');
+            
+            if(isCatchAll) {
+                
+                onPostbackMiddleJS += "\n\t\t"
+                    + "if(true) {\n\n";
+                
+            }
+            else {
 
-            // Retrieve postback id to match.
-            var postbackToMatch = formatCode($($(triggerParent).find('input.form-control')[1]).val());
+                // Retrieve postback id to match.
+                var postbackToMatch = formatCode($($(triggerParent).find('input.form-control')[1]).val());
 
-            // Compare the two payload IDs.
-            onPostbackMiddleJS += "\n\t"
-                + logicInsert
-                + "if(payload.postback.payload == \""
-                + postbackToMatch
-                + "\") {\n\n";
+                // Compare the two payload IDs.
+                onPostbackMiddleJS += "\n\t\t"
+                    + logicInsert
+                    + "if(postback == \""
+                    + postbackToMatch
+                    + "\") {\n\n";
+                
+            }
 
         }
 
@@ -320,7 +344,7 @@ function getEventHandlers() {
                 var plainTextReply = formatCode($(eventParent).find('input:text').first().val().trim());
 
                 // Inject the reply.
-                eventJS += "\treply({ text: \"" + plainTextReply + "\"}, (err, info) => {});\n\n";
+                eventJS += "\t\t\treply({ text: \"" + plainTextReply + "\"}, (err, info) => {});\n\n";
 
             }
             // If the event content is structured...
@@ -375,9 +399,30 @@ function getEventHandlers() {
                         // Get the two relevant fields.
                         var title = formatCode($($(buttonParent).find('.button-type-controls input')[0]).val().trim());
                         var uri = formatCode($($(buttonParent).find('.button-type-controls input')[1]).val().trim());
+                        
+                        /* Find out whether the buttons need repeated and add enclosing structure. */
+                
+                        var doRepeatButton = $(buttonParent).find('input:checkbox').first().is(':checked');
+
+                        // If the button is to be repeated, retrieve the number of times.
+                        if(doRepeatButton) {
+
+                            // Make sure the value is formatted.
+                            var repeatTimes = $(buttonParent).find('.button-type-controls .form-group input.form-control').val().trim();
+
+                            eventJS += "\tfor(var i = 0; i < " + formatCode(repeatTimes) + "; i++) {\n\n"
+
+                        }
 
                         // Push the buttons to the storage object.
                         eventJS += '\tbuttons.push(buildButton("' + type + '", "' + title + '", "' + uri + '"));\n';
+                        
+                        // Remember to close the code-block.
+                        if(doRepeatButton) {
+
+                            eventJS += "\n\t}\n";
+
+                        }
 
                     });
 
@@ -411,7 +456,7 @@ function getEventHandlers() {
                     }
 
                     // Build the greater element.
-                    eventJS += "\t// Format element.\n\n\telements.push(buildElement(\n\t\t\""
+                    eventJS += "\n\t// Format element.\n\n\telements.push(buildElement(\n\t\t\""
                         + title
                         + "\",\n\t\t\""
                         + subtitle
@@ -435,9 +480,9 @@ function getEventHandlers() {
             eventJS += "\n\t//Log that user-based trigger has fired.\n\treturn true;\n\n\t}\n\n";
         }
         else if($(triggerTypeRadio).hasClass('trigger-option-text')) {
-            eventJS += "\n\n\t\t// Log that at least one event has triggered.\n\t\tnotCaught = false;\n\n\t}\n\n";
+            eventJS += "\n\n\t\t\t// Log that at least one event has triggered.\n\t\t\tnotCaught = false;\n\n\t}\n\n";
         }
-        else eventJS += "\n\n\t}\n\n";
+        else eventJS += "\n\t\t}\n\n";
 
         // Add the new event code to the right section.
         if($(triggerTypeRadio).hasClass('trigger-option-text')) {
@@ -492,8 +537,6 @@ function getEventHandlers() {
             // Get the enclosing element dialog.
             var elementParent = $(eventParent).find('.tab-content .tab-pane.active').first();
 
-            console.log($(elementParent).html());
-
             // Add button clearance.
             errorJS += "\t// Format element's buttons if they exist.\n\tbuttons = [];\n\n";
 
@@ -528,9 +571,9 @@ function getEventHandlers() {
                 // Get the two relevant fields.
                 var title = formatCode($($(buttonParent).find('.button-type-controls input')[0]).val().trim());
                 var uri = formatCode($($(buttonParent).find('.button-type-controls input')[1]).val().trim());
-
+                
                 // Push the buttons to the storage object.
-                errorJS += '\tbuttons.push(buildButton("' + type + '", "' + title + '", "' + uri + '"));\n';
+                errorJS += '\t\tbuttons.push(buildButton("' + type + '", "' + title + '", "' + uri + '"));\n';
 
             });
 
